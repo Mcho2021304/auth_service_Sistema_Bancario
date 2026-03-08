@@ -61,6 +61,23 @@ using (var scope = app.Services.CreateScope())
             Thread.Sleep(3000);
         }
     }
+
+    var passwordHasher = services.GetRequiredService<IPasswordHasher>();
+
+    if (!context.Users.Any(u => u.Role == "Admin"))
+    {
+        context.Users.Add(new AuthService.Domain.Entities.User
+        {
+            FullName = "Administrador Principal",
+            Email = "admin@banco.com",
+            PasswordHash = passwordHasher.Hash("Admin123!"),
+            Role = "Admin",
+            IsActive = true
+        });
+
+        context.SaveChanges();
+        Console.WriteLine("Administrador base creado exitosamente mediante Data Seeder.");
+    }
 }
 
 app.UseAuthentication();

@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_db
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=SuperSecretPassword123!
+    ports:
+      - "1433:1433"
+    networks:
+      - banco-network
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_db
+    ports:
+      - "27017:27017"
+    networks:
+      - banco-network
+
+  auth-service:
+    build:
+      context: ./auth_service_Sistema_Bancario/AuthService
+      dockerfile: Dockerfile
+    container_name: auth_service
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver,1433;Database=BancoAuthDb;User Id=sa;Password=SuperSecretPassword123!;TrustServerCertificate=True
+      - Jwt__Key=SuperSecretKeyParaElSistemaBancario2024+
+      - Jwt__Issuer=AuthService
+      - Jwt__Audience=SistemaBancarioUsers
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlserver
+    networks:
+      - banco-network
+
+  admin-service:
+    build:
+      context: ./SistemaBancario-admin
+      dockerfile: Dockerfile
+    container_name: admin_service
+    environment:
+      - PORT=3001
+      - MONGODB_URI=mongodb://mongodb:27017/SistemaBancarioDB
+      - JWT_SECRET=SuperSecretKeyParaElSistemaBancario2024+
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+    networks:
+      - banco-network
+
+  user-service:
+    build:
+      context: ./SistemaBancario-user
+      dockerfile: Dockerfile
+    container_name: user_service
+    environment:
+      - PORT=3002
+      - MONGODB_URI=mongodb://mongodb:27017/SistemaBancarioDB
+      - JWT_SECRET=SuperSecretKeyParaElSistemaBancario2024+
+    ports:
+      - "3002:3002"
+    depends_on:
+      - mongodb
+    networks:
+      - banco-network
+
+networks:
+  banco-network:
+    driver: bridge

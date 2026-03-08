@@ -1,0 +1,921 @@
+{
+  "info": {
+    "_postman_id": "07c83bdc-f07b-4f72-bbf2-324abac5b386",
+    "name": "Sistema Bancario Colección",
+    "description": "Colecciones para el Banco",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52435973",
+    "_collection_link": "https://go.postman.co/collection/52435973-07c83bdc-f07b-4f72-bbf2-324abac5b386?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Admin Service",
+      "item": [
+        {
+          "name": "Users",
+          "item": [
+            {
+              "name": "Get Users",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/users?limite=10&desde=0",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "key": "limite",
+                      "value": "10"
+                    },
+                    {
+                      "key": "desde",
+                      "value": "0"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update User",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Nuevo Nombre\",\n    \"surname\": \"Nuevo Apellido\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/users/:id",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ID_DEL_USUARIO"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Deactivate User",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/users/:id",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ID_DEL_USUARIO"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Roles",
+          "item": [
+            {
+              "name": "Get Roles",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/roles",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "roles"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Role",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"role\": \"Client\",\n    \"description\": \"Rol para clientes regulares\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/roles",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "roles"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Currencies",
+          "item": [
+            {
+              "name": "Get Currencies",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/currencies",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "currencies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Currency",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"code\": \"USD\",\n    \"name\": \"Dólar Estadounidense\",\n    \"exchangeRate\": 7.80\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/currencies",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "currencies"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Exchange Rate",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"exchangeRate\": 7.85\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/currencies/:id",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "currencies",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ID_DE_MONEDA"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Services",
+          "item": [
+            {
+              "name": "Get Services",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/services",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "services"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Create Service",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"name\": \"Energía Eléctrica\",\n    \"provider\": \"EEGSA\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/services",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "services"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Accounts",
+          "item": [
+            {
+              "name": "Get Accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/accounts",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Toggle Account Status",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/accounts/:id/status",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":id",
+                    "status"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "ID_DE_CUENTA"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get My Account",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/accounts/my-account",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    "my-account"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transactions",
+          "item": [
+            {
+              "name": "Get All Transactions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/transactions",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Deposits",
+          "item": [
+            {
+              "name": "Create Deposit",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"receptorAccount\": \"NUMERO_CUENTA\",\n    \"amount\": 500,\n    \"description\": \"Depósito inicial\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/deposits",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "deposits"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transfers",
+          "item": [
+            {
+              "name": "Create Transfer",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"senderAccount\": \"CUENTA_ORIGEN\",\n    \"receptorAccount\": \"CUENTA_DESTINO\",\n    \"amount\": 150,\n    \"description\": \"Pago de honorarios\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/transfers",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transfers"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Payments",
+          "item": [
+            {
+              "name": "Create Payment",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"senderAccount\": \"CUENTA_ORIGEN\",\n    \"serviceId\": \"ID_DEL_SERVICIO\",\n    \"amount\": 200,\n    \"description\": \"Pago de recibo\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/payments",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Monitoring",
+          "item": [
+            {
+              "name": "Get Audit Logs",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_admin}}/api/v1/monitoring",
+                  "host": [
+                    "{{url_admin}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "monitoring"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "User Service",
+      "item": [
+        {
+          "name": "Accounts",
+          "item": [
+            {
+              "name": "Create Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"accountType\": \"Monetaria\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_user}}/api/v1/accounts",
+                  "host": [
+                    "{{url_user}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get My Accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_user}}/api/v1/accounts",
+                  "host": [
+                    "{{url_user}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transfers",
+          "item": [
+            {
+              "name": "Create Transfer",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"senderAccount\": \"MI_NUMERO_DE_CUENTA\",\n    \"receptorAccount\": \"CUENTA_DESTINO\",\n    \"amount\": 100,\n    \"description\": \"Pago de cena\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_user}}/api/v1/transfers",
+                  "host": [
+                    "{{url_user}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transfers"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Payments",
+          "item": [
+            {
+              "name": "Pay Service",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"senderAccount\": \"MI_NUMERO_DE_CUENTA\",\n    \"serviceId\": \"ID_DEL_SERVICIO\",\n    \"amount\": 250,\n    \"description\": \"Pago de internet\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url_user}}/api/v1/payments",
+                  "host": [
+                    "{{url_user}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "payments"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Transactions",
+          "item": [
+            {
+              "name": "Get My History",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-token",
+                    "value": "{{token}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{url_user}}/api/v1/transactions/my-history",
+                  "host": [
+                    "{{url_user}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "transactions",
+                    "my-history"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth Service",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fullName\": \"Administrador Sistema\",\n    \"email\": \"admin@banco.com\",\n    \"password\": \"Admin123!\",\n    \"role\": \"Admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url_auth}}/api/v1/Auth/register",
+              "host": [
+                "{{url_auth}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "Auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@banco.com\",\n    \"password\": \"Admin123!\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url_auth}}/api/v1/Auth/login",
+              "host": [
+                "{{url_auth}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "Auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "url_auth",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "url_admin",
+      "value": "http://localhost:3001"
+    },
+    {
+      "key": "url_user",
+      "value": "http://localhost:3002"
+    },
+    {
+      "key": "token",
+      "value": "PEGAR_AQUI_EL_TOKEN_OBTENIDO_EN_EL_LOGIN"
+    }
+  ]
+}
