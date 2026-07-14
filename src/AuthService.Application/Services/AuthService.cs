@@ -92,7 +92,7 @@ public class AuthService(
             Username = registerDto.Username,
             Email = registerDto.Email.ToLowerInvariant(),
             Password = passwordHashService.HashPassword(registerDto.Password),
-            Status = false,
+            Status = true,
             UserProfile = new UserProfile
             {
                 Id = userProfileId,
@@ -104,7 +104,7 @@ public class AuthService(
             {
                 Id = userEmailId,
                 UserId = userId,
-                EmailVerified = false,
+                EmailVerified = true,
                 EmailVerificationToken = emailVerificationToken,
                 EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24)
             },
@@ -135,6 +135,38 @@ public class AuthService(
             catch (Exception ex)
             {
                 logger.LogError(ex, "Failed to send verification email");
+            }
+        });
+
+        // Sincronizar con Node.js Admin (MongoDB) en background
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                using var httpClient = new System.Net.Http.HttpClient();
+                var syncPayload = new 
+                { 
+                    id = createdUser.Id,
+                    name = createdUser.Name, 
+                    surname = createdUser.Surname, 
+                    email = createdUser.Email, 
+                    role = "Client" 
+                };
+                var content = System.Net.Http.Json.JsonContent.Create(syncPayload);
+                var response = await httpClient.PostAsync("http://localhost:3001/api/v1/users/sync", content);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    logger.LogInformation("Usuario sincronizado con MongoDB exitosamente");
+                }
+                else
+                {
+                    logger.LogWarning($"Failed to sync user with MongoDB. Status Code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Exception while syncing user with MongoDB");
             }
         });
 
