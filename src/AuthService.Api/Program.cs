@@ -25,10 +25,10 @@ builder.Host.UseSerilog((context, services, loggerConfiguration) =>
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowReactApp",
+    options.AddDefaultPolicy(
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173") // La URL de tu Frontend
+            policy.WithOrigins("http://localhost:5173", "http://localhost:5174")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -77,16 +77,7 @@ builder.Services.AddSwaggerGen(options =>
     }
 });
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowReactApp",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173") // La URL de tu Frontend
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
-});
+
 
 var app = builder.Build(); 
 
@@ -132,7 +123,8 @@ app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Core middlewares
 app.UseHttpsRedirection();
-app.UseCors("AllowReactApp");
+app.UseRouting();
+app.UseCors();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
