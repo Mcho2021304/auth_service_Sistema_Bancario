@@ -22,8 +22,8 @@ RUN mkdir -p /app/logs /app/keys
 COPY --from=build /app/publish .
 
 ENV ASPNETCORE_URLS=http://+:5212
-ENV ASPNETCORE_ENVIRONMENT=Development
-ENV ENABLE_SWAGGER=true
+ENV ASPNETCORE_ENVIRONMENT=Production
+ENV ENABLE_SWAGGER=false
 ENV DISABLE_HTTPS_REDIRECT=true
 
 EXPOSE 5212
